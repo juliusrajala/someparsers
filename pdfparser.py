@@ -36,6 +36,9 @@ def downloadFile(data_set, key):
         pdf_name="".join(pdf_name)
         pdf_name=pdf_name.split(":")
         pdf_name="".join(pdf_name)
+        pdf_name=pdf_name.split("/")
+        pdf_name="".join(pdf_name)
+
 
     if os.path.exists("C:\Users\jijraj\Python\Scripts"+"/" + pdf_name):
         print "Already exists"

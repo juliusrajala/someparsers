@@ -9,22 +9,21 @@ from pdfparser import scrapeArticles, downloadFile
 def scrapeSite(address):
   page = requests.get(address)
   data = page.content
-  soup = BeautifulSoup(data)
+  soup = BeautifulSoup(data, "html.parser")
 
   links = soup.find_all('a', class_="issueStyleCoverDate")
   returnables = []
   for link in links:
     print link['href']
-    returnables.append("http://online.liebertpub.com/" + link['href'])
+    returnables.append("http://online.liebertpub.com" + link['href'])
 
   return returnables
-
 
 def main(argv):
   links = scrapeSite(argv)
   for link in links:
+    print link
     scrapeArticles(link)
-
 
 if __name__ == '__main__':
   main(sys.argv[1])
