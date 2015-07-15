@@ -16,7 +16,10 @@ def scrapeArticles(address):
     keys = []
     values = []
     for article in articles:
-        keys.append(article.find_all('span', class_="hlFld-Title")[0].find_all(text=True)[0])
+        try:
+            keys.append(article.find_all('span', class_="hlFld-Title")[0].find_all(text=True)[0])
+        except IndexError:
+            keys.append("Nameless_article_from_"+address)
         values.append(article.find_all('a', class_="pdfLink")[0]['href'])
 
     data_sets = dict(zip(keys, values))
@@ -24,8 +27,6 @@ def scrapeArticles(address):
     print data_sets
     for key in data_sets:
         downloadFile(data_sets[key], key)
-
-
 
 def downloadFile(data_set, key):
     pdf_name = key+".pdf"
@@ -37,6 +38,8 @@ def downloadFile(data_set, key):
         pdf_name=pdf_name.split(":")
         pdf_name="".join(pdf_name)
         pdf_name=pdf_name.split("/")
+        pdf_name="".join(pdf_name)
+        pdf_name=pdf_name.split('"')
         pdf_name="".join(pdf_name)
 
 
