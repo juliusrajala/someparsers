@@ -1,0 +1,20 @@
+[HEADER]
+Sony D5803
+Name: No name provided 
+Notes: None provided 
+[SENSORS]
+Sensor count = 8 
+Signal1: accX, D5803
+Signal2: accY, D5803
+Signal3: accZ, D5803
+Signal4: accTimestamp, D5803
+Signal5: gyroX, D5803
+Signal6: gyroY, D5803
+Signal7: gyroZ, D5803
+Signal8: gyroTimestamp, D5803
+[RRINTERVAL COLUMNS] 
+bpm combRRInt accX accY accZ gyroX gyroY gyroZ timestamp
+[TIME]
+Start: 427392994003492 ns
+End: 427512907043036 ns
+Duration: 119913039544 ns => 1min 59s 913ms 39544ns

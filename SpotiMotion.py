@@ -11,18 +11,11 @@ def quit(self):
 		cv2.destroyAllWindows()
 		vid.release()
 
-def screenCap(frame):
-	print "Taking a screen capture"
-	cv2.imwrite("s"+(time.strftime("%H:%M:%S"))+".jpg", frame)	
-	
 def startHandling(self):
 	print "BGS-flipped"
 	global started
 	if not otsu:
 		started = not started
-	
-def drawCircle():
-	x,y,w,h = 400,400,50,50
 	
 def startOtsu(self):
 	print "starting Otsu's thresholding"
@@ -34,7 +27,6 @@ def startOtsu(self):
 		
 keyPresses = {
 	27:quit,
-	ord("p"): screenCap,
 	ord("g"): startHandling,
 	ord("o"): startOtsu
 }
@@ -50,10 +42,10 @@ def calculateBoxContent(img):
 	if count > 2000:
 		totHits +=1
 
-		
 
 #function checks if the screen simply flashes white to avoid mishits
 def checkSnowBlindness(frame):
+	global totHits
 	img = frame[0:50, 200:250]
 	count = 0
 	for x in range(50):
@@ -61,7 +53,8 @@ def checkSnowBlindness(frame):
 			if img[x,y] != 0:
 				count+=1
 	if count > 300:
-		print "Screen flashed, no count."
+		totHits = 0
+		print "Screen flashed, no count."		
 		return True
 	else:
 		return False
